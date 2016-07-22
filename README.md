@@ -1,3 +1,21 @@
+Iziteq notes
+------------
+
+Репозиторий отличается от оригинального наличием версии 1.4.0.1, совместимой с ES 0.90.9.
+
+**Почему?**
+
+21 июля 2016г. обнаружили, что на prod-сервере с ES и Redis-ом заканчивается место. На графике disc usage в newrelic были резкие скачки каждую ночь в определённое время. Выяснилось, что плагин update_by_query при некоторых обстоятельствах не освобождает контекст, из-за чего после слияния блоков старые блоки не удаляются. Мэйнтейнеры плагина пофиксили это в 1.4.2, но для установки этой версии нужно было обновлять ES (с 0.90.9 до 0.90.10) и мы решили вместо этого бэкпортировать фикс в 1.4.0.
+
+**Что изменено?**
+
+[Diff](https://github.com/iziteq/elasticsearch-action-updatebyquery/compare/v1.4.0...v1.4.0.1)
+
+**Установка**
+
+`sudo /usr/share/elasticsearch/bin/plugin install action-updatebyquery --url "https://github.com/iziteq/elasticsearch-action-updatebyquery/raw/v1.4.0.1/dist/elasticsearch-action-updatebyquery-1.4.0.1.zip"`
+
+
 ElasticSearch Update By Query Plugin
 ====================================
 
